@@ -1,0 +1,258 @@
+/* ==========================================================================
+   custom.css — 템플릿(style.css)은 건드리지 않고 덮어쓰는 커스텀 스타일
+   2026.11 포트폴리오 업데이트 시 추가
+   ========================================================================== */
+
+/* 1. 한글 폰트
+   Poppins에는 한글 글리프가 없어 OS 기본 폰트(Windows: 맑은 고딕)로 대체됨.
+   Noto Sans KR을 fallback으로 지정해 OS와 무관하게 비슷한 인상을 유지한다. */
+body,
+h1, h2, h3, h4, h5, h6,
+.btn,
+.navbar,
+.resume-wrap .date,
+.resume-wrap .position {
+  font-family: "Poppins", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+body {
+  word-break: keep-all;          /* 한글 단어 중간 줄바꿈 방지 */
+  color: #6b6b6b;                /* 기본 #999 → 가독성을 위해 살짝 진하게 */
+}
+
+/* 2. Hero */
+.hero-wrap .slider-text p.hero-tagline {
+  margin: 18px auto 0;
+  max-width: 560px;
+  font-size: 17px;
+  line-height: 1.7;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.62);   /* 템플릿 기본값(흰색 0.8)은 밝은 배경에서 보이지 않음 */
+}
+.hero-wrap .slider-text h2 {
+  font-size: 28px;
+  min-height: 1.4em;             /* 타이핑 애니메이션 중 레이아웃 점프 방지 */
+}
+@media (max-width: 767.98px) {
+  .hero-wrap .slider-text h2 { font-size: 22px; }
+  .hero-wrap .slider-text p.hero-tagline { font-size: 15px; padding: 0 12px; }
+}
+
+/* 3. About */
+.ftco-about ul.about-info li span a { color: #3e64ff; }
+.ftco-about .about-lead strong { color: #000; font-weight: 600; }
+.ftco-about .counter-wrap .text p .number { font-size: 34px; }
+
+/* 4. 요약 카드 */
+.ftco-counter .block-18 .text span.caption {
+  display: block;
+  font-size: 13px;
+  color: #777;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+/* 5. 경력 / 프로젝트 공통 */
+.resume-wrap h2 { line-height: 1.35; margin-bottom: 4px; }
+.resume-wrap .position { display: block; margin-bottom: 6px; }
+.resume-wrap .summary { margin-bottom: 10px; }
+.resume-wrap .label {
+  display: block;
+  font-weight: 700;
+  color: #3e64ff;
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+.resume-wrap .stack {
+  margin: 0;
+  color: #6b6b6b;
+  line-height: 1.7;
+}
+.resume-list {
+  margin: 0 0 6px;
+  padding-left: 1.15em;
+}
+.resume-list li {
+  margin-bottom: 4px;
+  line-height: 1.7;
+}
+.resume-list li::marker { color: #3e64ff; }
+
+/* 프로젝트 그룹 제목 */
+.project-group {
+  display: inline-block;
+  margin: 6px 0 22px;
+  padding-bottom: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #3e64ff;
+  border-bottom: 2px solid #3e64ff;
+}
+.resume-wrap + .project-group { margin-top: 26px; }
+
+/* 앵커 이동 시 상단 고정 내비에 가려지지 않도록 */
+.resume-wrap[id] { scroll-margin-top: 90px; }
+
+/* 재직 기간 프로젝트 타임라인 (간트식) */
+.timeline {
+  margin: 0 0 34px;
+  padding: 18px 18px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  background: #fafbff;
+}
+.tl-axis,
+.tl-row {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  align-items: center;
+  column-gap: 12px;
+}
+.tl-axis { margin-bottom: 10px; }
+.tl-row { margin-bottom: 8px; }
+.tl-axis .tl-track {
+  height: 18px;
+  background: none;
+  border-right: 0;
+}
+.tl-tick {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  font-size: 11px;
+  line-height: 18px;
+  color: #999;
+  white-space: nowrap;
+}
+.tl-tick.major { color: #444; font-weight: 600; }
+.tl-tick.major:first-child { transform: none; }
+.tl-tick.now { color: #3e64ff; font-weight: 700; transform: translateX(-100%); }
+.tl-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #222;
+  text-align: right;
+  line-height: 1.3;
+}
+a.tl-label:hover { color: #3e64ff; }
+.tl-track {
+  position: relative;
+  height: 22px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.09) 1px, transparent 1px);
+  background-size: 15% 100%;      /* 분기(3개월) 눈금 = 20개월 중 3개월 */
+  border-right: 1px dashed rgba(62, 100, 255, 0.5);
+}
+.tl-bar {
+  position: absolute;
+  top: 3px;
+  height: 16px;
+  border-radius: 4px;
+  background: #3e64ff;
+}
+.tl-bar.light { background: rgba(62, 100, 255, 0.22); }
+.tl-bar i {
+  position: absolute;
+  left: 8px;
+  top: 0;
+  font-style: normal;
+  font-size: 11px;
+  line-height: 16px;
+  color: #fff;
+  white-space: nowrap;
+}
+.tl-bar.light i { color: #3e64ff; }
+.tl-caption {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #888;
+}
+@media (max-width: 767.98px) {
+  .timeline { padding: 12px 10px 6px; }
+  .tl-axis, .tl-row { grid-template-columns: 96px 1fr; column-gap: 8px; }
+  .tl-label { font-size: 11px; }
+  .tl-tick:not(.major):not(.now) { display: none; }
+  .tl-bar i { display: none; }
+}
+
+/* 산출물/링크 버튼 */
+.resume-wrap .btn-link-sm {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 2px 12px;
+  font-size: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 999px;
+  color: #555;
+}
+.resume-wrap .btn-link-sm:hover {
+  border-color: #3e64ff;
+  color: #3e64ff;
+}
+
+/* 6. Skills — 퍼센트 원형 그래프 대신 영역별 기술 태그 */
+.skills-intro { margin-bottom: 22px; }
+.skill-group { margin-bottom: 26px; }
+.skill-group h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10px;
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tag {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(62, 100, 255, 0.35);
+  background: #fff;
+  color: #3e64ff;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.tag-main {
+  background: #3e64ff;
+  border-color: #3e64ff;
+  color: #fff;
+  font-weight: 600;
+}
+.tag-legend {
+  font-size: 13px;
+  color: #888;
+}
+.tag-legend .tag {
+  padding: 1px 10px;
+  font-size: 12px;
+  margin-right: 4px;
+}
+
+/* 7. CTA (재직 중 섹션) */
+.ftco-hireme h2 { font-size: 34px; line-height: 1.35; }
+@media (max-width: 767.98px) {
+  .ftco-hireme h2 { font-size: 26px; }
+}
+
+/* 8. Contact */
+.contact-info .box p { word-break: break-all; }
+.contact-info .box h3 { font-size: 18px; }
+
+/* 9. Footer */
+.ftco-footer .updated {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #999;
+}
+
+/* 10. 모바일 보정 */
+@media (max-width: 767.98px) {
+  #navi { display: none; }       /* 모바일에서는 사이드 목차가 콘텐츠를 밀어내므로 숨김 */
+  .resume-wrap h2 { font-size: 20px; }
+  .resume-wrap .position { font-size: 16px; }
+  .tag { white-space: normal; }
+}
